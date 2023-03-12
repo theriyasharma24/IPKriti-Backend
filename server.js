@@ -3,9 +3,13 @@ const express = require("express");
 const path = require("path");
 const app = express();
 var cors = require("cors");
+const connectDB = require("./config/db");
+connectDB();
 
 app.use(express.json({ extended: false }));
 app.use(cors());
+
+app.use("/api/artworks", require("./routes/artworks"));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
