@@ -1,7 +1,7 @@
 ## Welcome to IPKriti-Backend ✨
 
 ### Steps to run the code:
-- git clone https://github.com/theriyasharma24/IPKriti-Backend
+- git clone https://github.com/Sabhya-Mentor-Programme/IPKriti-Backend
 - npm install
 - npm run server
 
