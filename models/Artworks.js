@@ -11,6 +11,23 @@ const ArtworksSchema = mongoose.Schema(
     image: {
       type: String,
     },
+    title:{
+      type:String,
+      required:'Give title to the art'
+    },
+    artistID:
+    {
+      required:'Every artwork must have a creator',
+      type:mongoose.Schema.Types.ObjectId, 
+      ref:"Artists"
+    },
+    wishlist:
+      [
+        {
+          type:mongoose.Schema.Types.ObjectId, 
+          ref:"Users"
+        }
+      ]
   },
   { timestamps: true }
 );
