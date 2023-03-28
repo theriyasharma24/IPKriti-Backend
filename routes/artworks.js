@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
   //     return res.status(400).json({ errors: errors.array() });
   //   }
 
-  const { user, artistname, image,title,artistID } = req.body;
+  const { user, artistname, image } = req.body;
 
   console.log("inside routes:", req.body);
   try {
@@ -36,8 +36,6 @@ router.post("/", async (req, res) => {
       user,
       artistname,
       image,
-      title,
-      artistID
     });
 
     const artworks = await newartworks.save();
@@ -103,36 +101,25 @@ router.post("/", async (req, res) => {
 // // @route     DELETE api/artworks/:id
 // // @phone      Delete artworks
 // // @access    Private
-router.delete("/:_id", async (req, res) => {
-   console.log(req.params);
-   let data=await Artworks.deleteOne(req.params);
-   res.send(data);
-  // res.send("Data");
-  // try {
-  //   let artworks = await Artworks.findById(req.params._id);
+// router.delete("/:id", auth, async (req, res) => {
+//   try {
+//     let artworks = await Artworks.findById(req.params.id);
 
-  //   if (!artworks)
-  //     return res.status(404).json({ msg: "artworks details info not found" });
+//     if (!artworks)
+//       return res.status(404).json({ msg: "artworks details info not found" });
 
-  //   // Make sure user owns contact
-  //   if (artworks.user.toString() !== req.user._id) {
-  //     return res.status(401).json({ msg: "Not authorized" });
-  //   }
+//     // Make sure user owns contact
+//     if (artworks.user.toString() !== req.user.id) {
+//       return res.status(401).json({ msg: "Not authorized" });
+//     }
 
-  //   await Artworks.findByIdAndRemove(req.params._id);
+//     await Artworks.findByIdAndRemove(req.params.id);
 
-  //   res.json({ msg: "artworks details info removed" });
-  // } catch (err) {
-  //   console.error(err.message);
-  //   res.status(500).send("Server Error");
-  // }
-});
-router.put("/:_id", async (req, res) => {
-  let data=await Artworks.updateOne(
-    req.params,
-    {$set: req.body}
-  );
-  res.send(data);
-});
+//     res.json({ msg: "artworks details info removed" });
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
 
 module.exports = router;
