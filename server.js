@@ -11,6 +11,9 @@ app.use(cors());
 
 app.use("/api/artworks", require("./routes/artworks"));
 
+//soniya
+app.use("/api/users", require("./routes/users"));
+
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
