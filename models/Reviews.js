@@ -7,13 +7,10 @@ const ReviewsSchema = mongoose.Schema(
     comment: {
       type: String,
     },
-    reviewerId: {
-      
-      type:mongoose.Schema.Types.ObjectId,
-      ref:"User",
-      required:true
-
-      
+    reviewerid: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
   },
   { timestamps: true }
