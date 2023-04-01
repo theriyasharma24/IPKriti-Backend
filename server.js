@@ -10,7 +10,6 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 app.use("/api/artworks", require("./routes/artworks"));
-app.use("/api/artwork", require("./routes/artwork"));
 app.use("/api/artist", require("./routes/artist"));
 app.use("/api/reviews", require("./routes/reviews"));
 
