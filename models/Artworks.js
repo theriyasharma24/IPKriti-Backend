@@ -1,34 +1,24 @@
 const mongoose = require("mongoose");
-const ArtworksSchema = mongoose.Schema(
+const ArtworkSchema = mongoose.Schema(
   {
-    user: {
-      type: String,
-    },
-    artistname: {
-      type: String,
+    cost: {
+      type: Number,
       required: true,
     },
-    image: {
+    artist_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Artist",
+      required: true,
+    },
+    art_description: {
       type: String,
     },
-    title:{
-      type:String,
-      required:'Give title to the art'
+    reviews_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Reviews",
+      required: true,
     },
-    artistID:
-    {
-      required:'Every artwork must have a creator',
-      type:mongoose.Schema.Types.ObjectId, 
-      ref:"Artists"
-    },
-    wishlist:
-      [
-        {
-          type:mongoose.Schema.Types.ObjectId, 
-          ref:"Users"
-        }
-      ]
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("ArtworksSchema", ArtworksSchema);
+module.exports = mongoose.model("artworkSchema", ArtworkSchema);
