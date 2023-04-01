@@ -28,12 +28,14 @@ router.post("/", async (req, res) => {
   //     return res.status(400).json({ errors: errors.array() });
   //   }
 
-  const { rating , comment, reviewerId } = req.body;
+  const { rating, comment, reviewerid } = req.body;
 
   console.log("inside routes:", req.body);
   try {
     const newreviews = new Reviews({
-      rating , comment, reviewerId 
+      rating,
+      comment,
+      reviewerid,
     });
 
     const reviews = await newreviews.save();
@@ -45,15 +47,12 @@ router.post("/", async (req, res) => {
   }
 });
 router.put("/:_id", async (req, res) => {
-  let data=await Reviews.updateOne(
-    req.params,
-    {$set: req.body}
-  );
+  let data = await Reviews.updateOne(req.params, { $set: req.body });
   res.send(data);
 });
 router.delete("/:_id", async (req, res) => {
   console.log(req.params);
-  let data=await Reviews.deleteOne(req.params);
+  let data = await Reviews.deleteOne(req.params);
   res.send(data);
 });
 
