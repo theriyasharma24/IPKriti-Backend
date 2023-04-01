@@ -10,6 +10,11 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 app.use("/api/artworks", require("./routes/artworks"));
+app.use("/api/reviews", require("./routes/reviews"));
+app.use("/api/user", require("./routes/user"));
+
+
+
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
