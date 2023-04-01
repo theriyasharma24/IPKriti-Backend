@@ -16,6 +16,9 @@ app.use("/api/user", require("./routes/user"));
 
 
 
+//soniya
+app.use("/api/users", require("./routes/users"));
+
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
