@@ -28,7 +28,8 @@ router.post("/", async (req, res) => {
   //     return res.status(400).json({ errors: errors.array() });
   //   }
 
-  const { cost, artist_id, art_description, reviews_id } = req.body;
+  const { cost, artist_id, art_description, art_title, reviews_id, wishlist } =
+    req.body;
 
   console.log("inside routes:", req.body);
   try {
@@ -36,7 +37,9 @@ router.post("/", async (req, res) => {
       cost,
       artist_id,
       art_description,
+      art_title,
       reviews_id,
+      wishlist,
     });
 
     const artwork = await newartwork.save();

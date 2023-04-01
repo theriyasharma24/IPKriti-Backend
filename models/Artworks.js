@@ -13,11 +13,21 @@ const ArtworkSchema = mongoose.Schema(
     art_description: {
       type: String,
     },
+    art_title: {
+      type: String,
+      required: true,
+    },
     reviews_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Reviews",
       required: true,
     },
+    wishlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );
