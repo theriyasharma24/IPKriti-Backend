@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-//const { string } = require("prop-types");
 const UsersSchema = mongoose.Schema(
   {
     name: {
@@ -9,15 +8,16 @@ const UsersSchema = mongoose.Schema(
     uid: {
       type: String,
       required: true,
+      unique: true,
     },
-    uemail: {
+    email: {
       type: String,
     },
-    ucontactNo: {
-        type: Number,
+    contact: {
+      type: Number,
     },
-    uAddress: {
-        type: String,
+    address: {
+      type: String,
     },
   },
   { timestamps: true }

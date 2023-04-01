@@ -31,7 +31,6 @@ router.post("/", async (req, res) => {
   const { cost, artist_id, art_description, art_title, reviews_id, wishlist } =
     req.body;
 
-  console.log("inside routes:", req.body);
   try {
     const newartwork = new Artwork({
       cost,
@@ -55,84 +54,8 @@ router.put("/:_id", async (req, res) => {
   res.send(data);
 });
 router.delete("/:_id", async (req, res) => {
-  console.log(req.params);
   let data = await Artwork.deleteOne(req.params);
   res.send(data);
 });
-
-// @route     PUT api/artworks/:id
-// @phone      Update artworks
-// @access    Private
-// router.put("/:id", auth, async (req, res) => {
-//   const {
-//     name,
-//     contact,
-//     aadhaar,
-//     pan,
-//     amount,
-//     paymentstatus,
-//     address,
-//     photo,
-//     signature,
-//   } = req.body;
-
-//   // Build contact object
-//   const artworksFields = {};
-//   if (name) artworksFields.name = name;
-//   if (contact) artworksFields.contact = contact;
-//   if (aadhaar) artworksFields.aadhaar = aadhaar;
-//   if (pan) artworksFields.pan = pan;
-//   if (amount) artworksFields.amount = amount;
-//   if (paymentstatus) artworksFields.paymentstatus = paymentstatus;
-//   if (address) artworksFields.address = address;
-//   if (photo) artworksFields.photo = photo;
-//   if (signature) artworksFields.signature = signature;
-//   try {
-//     let artworks = await Artworks.findById(req.params.id);
-
-//     if (!artworks)
-//       return res.status(404).json({ msg: "No artworks details info found" });
-
-//     // Make sure user owns contact
-//     if (artworks.user.toString() !== req.user.id) {
-//       return res.status(401).json({ msg: "Not authorized" });
-//     }
-
-//     artworks = await Artworks.findByIdAndUpdate(
-//       req.params.id,
-//       { $set: artworksFields },
-//       { new: true }
-//     );
-
-//     res.json(artworks);
-//   } catch (err) {
-//     console.error(er.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
-
-// // @route     DELETE api/artworks/:id
-// // @phone      Delete artworks
-// // @access    Private
-// router.delete("/:id", auth, async (req, res) => {
-//   try {
-//     let artworks = await Artworks.findById(req.params.id);
-
-//     if (!artworks)
-//       return res.status(404).json({ msg: "artworks details info not found" });
-
-//     // Make sure user owns contact
-//     if (artworks.user.toString() !== req.user.id) {
-//       return res.status(401).json({ msg: "Not authorized" });
-//     }
-
-//     await Artworks.findByIdAndRemove(req.params.id);
-
-//     res.json({ msg: "artworks details info removed" });
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
 
 module.exports = router;

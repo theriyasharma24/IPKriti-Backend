@@ -15,7 +15,6 @@ const ArtworkSchema = mongoose.Schema(
     },
     art_title: {
       type: String,
-      required: true,
     },
     reviews_id: {
       type: mongoose.Schema.Types.ObjectId,
@@ -25,7 +24,7 @@ const ArtworkSchema = mongoose.Schema(
     wishlist: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Users",
       },
     ],
   },

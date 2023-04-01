@@ -32,59 +32,43 @@ const { check, validationResult } = require("express-validator");
 
 const Users = require("../models/Users.js");
 router.get("/", async (req, res) => {
-    try {
-      const users = await Users.find({}).sort({
-        date: -1, //sorting starting from the recent date
-      });
-      res.json(users);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
-  });
+  try {
+    const users = await Users.find({}).sort({
+      date: -1, //sorting starting from the recent date
+    });
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
-  router.post("/", async (req, res) => {
-    //   const errors = validationResult(req);
-    //   if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    //   }
-  
-    const { name, uid, uemail, ucontactNo, uAddress } = req.body;
-  
-    console.log("inside routes:", req.body);
-    try {
-      const newusers = new Users({
-        name,
-        uid,
-        uemail,
-        ucontactNo,
-        uAddress
-      });
-  
-      const users = await newusers.save();
-  
-      res.json(users);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
-  });
-/*router.post("/", async (req, res) => {
-    const { name } = req.body;
+router.post("/", async (req, res) => {
+  const { name, uid, email, contact, address } = req.body;
 
-    console.log("inside routes:", req.body);
-    try {
-      const newusers = new Users({
-        name
-      });
-  
-      const users = await newusers.save();
-  
-      res.json(users);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
-  });*/
+  try {
+    const newusers = new Users({
+      name,
+      uid,
+      email,
+      contact,
+      address,
+    });
 
-  module.exports = router;
+    const users = await newusers.save();
+
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+router.put("/:_id", async (req, res) => {
+  let data = await Users.updateOne(req.params, { $set: req.body });
+  res.send(data);
+});
+router.delete("/:_id", async (req, res) => {
+  let data = await Users.deleteOne(req.params);
+  res.send(data);
+});
+module.exports = router;
