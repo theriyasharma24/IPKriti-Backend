@@ -31,12 +31,11 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 
 const Users = require("../models/Users.js");
+
 router.get("/", async (req, res) => {
   try {
-    const users = await Users.find({}).sort({
-      date: -1, //sorting starting from the recent date
-    });
-    res.json(users);
+    let data = await Users.find(req.params);
+    res.send(data);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -44,31 +43,31 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, uid, email, contact, address } = req.body;
-
   try {
-    const newusers = new Users({
-      name,
-      uid,
-      email,
-      contact,
-      address,
-    });
-
+    const newusers = new Users(req.body);
     const users = await newusers.save();
-
-    res.json(users);
+    res.send(users);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
 router.put("/:_id", async (req, res) => {
-  let data = await Users.updateOne(req.params, { $set: req.body });
-  res.send(data);
+  try {
+    let data = await Users.updateOne(req.params, { $set: req.body });
+    res.send(data);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 router.delete("/:_id", async (req, res) => {
-  let data = await Users.deleteOne(req.params);
-  res.send(data);
+  try {
+    let data = await Users.deleteOne(req.params);
+    res.send(data);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 module.exports = router;

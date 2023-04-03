@@ -9,37 +9,19 @@ const Artist = require("../models/Artist.js");
 // @access   public
 router.get("/", async (req, res) => {
   try {
-    const artist = await Artist.find({}).sort({
-      date: -1, //sorting starting from the recent date
-    });
-    res.json(artist);
+    let data = await Artist.find(req.params);
+    res.send(data);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
 
-// @route     POST api/artworks
-// @phone      Add new artworks
-// @access    Private
 router.post("/", async (req, res) => {
-  //   const errors = validationResult(req);
-  //   if (!errors.isEmpty()) {
-  //     return res.status(400).json({ errors: errors.array() });
-  //   }
-
-  const { name, contact, about, address } = req.body;
   try {
-    const newartist = new Artist({
-      name,
-      contact,
-      about,
-      address,
-    });
-
+    const newartist = new Artist(req.body);
     const artist = await newartist.save();
-
-    res.json(artist);
+    res.send(artist);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -47,12 +29,22 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:_id", async (req, res) => {
-  let data = await Artist.updateOne(req.params, { $set: req.body });
-  res.send(data);
+  try {
+    let data = await Artist.updateOne(req.params, { $set: req.body });
+    res.send(data);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 router.delete("/:_id", async (req, res) => {
-  let data = await Artist.deleteOne(req.params);
-  res.send(data);
+  try {
+    let data = await Artist.deleteOne(req.params);
+    res.send(data);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 
 module.exports = router;
