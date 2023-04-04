@@ -36,14 +36,5 @@ router.put("/:_id", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-router.delete("/:_id", async (req, res) => {
-  try {
-    let data = await Artwork.deleteOne(req.params);
-    res.send(data);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
 
 module.exports = router;
