@@ -9,21 +9,40 @@ const Artwork = require("./models/Artworks.js");
 app.use(express.json({ extended: false }));
 app.use(cors());
 
-const deleteData = async (req, res, next) => {
+//performing route operations
+const routeOperation = async (req, res, next) => {
   let route = req.url.split("/")[2];
   let routename =
     route.charAt(0).toUpperCase() + route.substring(1).toLowerCase();
 
   try {
-    let data = await require(`./models/${routename}.js`).deleteOne(req.params);
-    res.send(data);
+    if (req.method == "DELETE") {
+      let data = await require(`./models/${routename}.js`).deleteOne(
+        req.params
+      );
+      res.send(data);
+    } else if (req.method == "GET") {
+      let data = await require(`./models/${routename}.js`).find(req.params);
+      res.send(data);
+    } else if (req.method == "POST") {
+      const New = require(`./models/${routename}.js`);
+      const newdata = new New(req.body);
+      const data = await newdata.save();
+      res.send(data);
+    } else if (req.method == "PUT") {
+      let data = await require(`./models/${routename}.js`).updateOne(
+        req.params,
+        { $set: req.body }
+      );
+      res.send(data);
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 };
 
-app.use(deleteData);
+app.use(routeOperation);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
