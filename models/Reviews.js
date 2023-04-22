@@ -9,10 +9,10 @@ const ReviewsSchema = mongoose.Schema(
     },
     reviewerid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
+      ref: "users",
       required: true,
     },
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("reviewsSchema", ReviewsSchema);
+module.exports = mongoose.model("reviews", ReviewsSchema);

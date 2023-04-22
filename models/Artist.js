@@ -3,6 +3,7 @@ const ArtistSchema = mongoose.Schema(
   {
     name: {
       type: String,
+      required: true,
     },
     contact: {
       type: Number,
@@ -16,4 +17,4 @@ const ArtistSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("ArtistSchema", ArtistSchema);
+module.exports = mongoose.model("artists", ArtistSchema);
