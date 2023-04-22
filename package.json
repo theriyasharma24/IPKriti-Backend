@@ -91,5 +91,8 @@
   "bugs": {
     "url": "https://github.com/theriyasharma24/IPKriti-Backend/issues"
   },
-  "homepage": "https://github.com/theriyasharma24/IPKriti-Backend#readme"
+  "homepage": "https://github.com/theriyasharma24/IPKriti-Backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }
