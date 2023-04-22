@@ -3,6 +3,7 @@ const ArtistSchema = mongoose.Schema(
   {
     name: {
       type: String,
+      required: true,
     },
     contact: {
       type: Number,
