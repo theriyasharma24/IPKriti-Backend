@@ -19,7 +19,6 @@ const ArtworkSchema = mongoose.Schema(
     reviews_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Reviews",
-      required: true,
     },
     wishlist: [
       {
