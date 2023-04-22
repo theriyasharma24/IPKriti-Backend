@@ -7,7 +7,7 @@ const ArtworkSchema = mongoose.Schema(
     },
     artist_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "artists",
+      ref: "Artist",
       required: true,
     },
     art_description: {
@@ -18,16 +18,15 @@ const ArtworkSchema = mongoose.Schema(
     },
     reviews_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "reviews",
-      required: true,
+      ref: "Reviews",
     },
     wishlist: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
+        ref: "Users",
       },
     ],
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("artworks", ArtworkSchema);
+module.exports = mongoose.model("artworkSchema", ArtworkSchema);
