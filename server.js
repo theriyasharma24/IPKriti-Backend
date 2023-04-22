@@ -5,14 +5,44 @@ const app = express();
 var cors = require("cors");
 const connectDB = require("./config/db");
 connectDB();
-
+const Artwork = require("./models/Artworks.js");
 app.use(express.json({ extended: false }));
 app.use(cors());
 
-app.use("/api/artworks", require("./routes/artworks"));
-app.use("/api/artist", require("./routes/artist"));
-app.use("/api/reviews", require("./routes/reviews"));
-app.use("/api/users", require("./routes/users"));
+//performing route operations
+const routeOperation = async (req, res, next) => {
+  let route = req.url.split("/")[2];
+  let routename =
+    route.charAt(0).toUpperCase() + route.substring(1).toLowerCase();
+
+  try {
+    if (req.method == "DELETE") {
+      let data = await require(`./models/${routename}.js`).deleteOne(
+        req.params
+      );
+      res.send(data);
+    } else if (req.method == "GET") {
+      let data = await require(`./models/${routename}.js`).find(req.params);
+      res.send(data);
+    } else if (req.method == "POST") {
+      const New = require(`./models/${routename}.js`);
+      const newdata = new New(req.body);
+      const data = await newdata.save();
+      res.send(data);
+    } else if (req.method == "PUT") {
+      let data = await require(`./models/${routename}.js`).updateOne(
+        req.params,
+        { $set: req.body }
+      );
+      res.send(data);
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
+app.use(routeOperation);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {

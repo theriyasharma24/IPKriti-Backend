@@ -32,42 +32,4 @@ const { check, validationResult } = require("express-validator");
 
 const Users = require("../models/Users.js");
 
-router.get("/", async (req, res) => {
-  try {
-    let data = await Users.find(req.params);
-    res.send(data);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-
-router.post("/", async (req, res) => {
-  try {
-    const newusers = new Users(req.body);
-    const users = await newusers.save();
-    res.send(users);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-router.put("/:_id", async (req, res) => {
-  try {
-    let data = await Users.updateOne(req.params, { $set: req.body });
-    res.send(data);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-router.delete("/:_id", async (req, res) => {
-  try {
-    let data = await Users.deleteOne(req.params);
-    res.send(data);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
 module.exports = router;
