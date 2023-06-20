@@ -15,6 +15,7 @@ const ArtworkSchema = mongoose.Schema(
     },
     art_title: {
       type: String,
+      required:true
     },
     reviews_id: {
       type: mongoose.Schema.Types.ObjectId,
@@ -26,6 +27,10 @@ const ArtworkSchema = mongoose.Schema(
         ref: "users",
       },
     ],
+    quantity:{
+      type:Number,
+      required:true
+    }
   },
   { timestamps: true }
 );

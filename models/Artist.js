@@ -5,6 +5,12 @@ const ArtistSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    artistType:[
+      {
+        type:String //ex-watercolorartist,illustrator
+      }
+    ]
+    ,
     contact: {
       type: Number,
     },
@@ -14,6 +20,14 @@ const ArtistSchema = mongoose.Schema(
     address: {
       type: String,
     },
+    socialMediaHandles:{
+      type:Map,
+      of:String     //works like a dictionary in python
+    },
+    UPIlink:{
+      type:String,
+      required:true
+    }
   },
   { timestamps: true }
 );
