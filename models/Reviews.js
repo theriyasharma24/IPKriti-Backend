@@ -3,13 +3,14 @@ const ReviewsSchema = mongoose.Schema(
   {
     rating: {
       type: Number,
+      required:true
     },
     comment: {
       type: String,
     },
     reviewerid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
+      ref: "user",
       required: true,
     },
   },

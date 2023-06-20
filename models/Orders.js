@@ -1,12 +1,17 @@
 const mongoose=require("mongoose");
 const OrderSchema=mongoose.Schema(
     {
-        user_id:{
+        ships_id:{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "users",
+            ref: "ship",
             required: true,
         },
-        orders:
+        user_id:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "user",
+            required: true,
+        },
+        artworks:
         [
             {
                 artwork:{type:mongoose.Schema.Types.ObjectId,
@@ -14,7 +19,13 @@ const OrderSchema=mongoose.Schema(
                 quantity:Number,
                 total_cost:Number
             }
-        ]
+        ],
+        deliveryStatus:
+        {
+            type:String,
+            required:true,
+            default:"Order Placed"
+        }
     },
     { timestamps: true }
 );
