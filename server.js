@@ -7,7 +7,13 @@ const connectDB = require("./config/db");
 connectDB();
 const Artwork = require("./models/Artworks.js");
 app.use(express.json({ extended: false }));
-app.use(cors());
+// app.use(cors());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 //performing route operations
 const routeOperation = async (req, res, next) => {
