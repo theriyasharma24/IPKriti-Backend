@@ -26,12 +26,6 @@ const ArtworkSchema = mongoose.Schema(
         ref: "users",
       },
     ],
-    reviews_id:[
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Reviews",
-      }
-    ]
   },
   { timestamps: true }
 );
