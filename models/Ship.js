@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
-const UsersSchema = mongoose.Schema(
+const ShipSchema = mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
     },
-    uid: {
-      type: String,
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
       required: true,
-      unique: true,
     },
     email: {
       type: String,
@@ -16,10 +16,12 @@ const UsersSchema = mongoose.Schema(
     contact: {
       type: Number,
     },
-    address: {
-      type: String,
-    },
+    address: [
+      {
+        type: String,
+      },
+    ],
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("users", UsersSchema);
+module.exports = mongoose.model("ship", ShipSchema);
