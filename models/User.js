@@ -4,8 +4,7 @@ const UserSchema = mongoose.Schema(
     name: {
       type: String,
     },
-    
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("UserSchema", UserSchema);
+module.exports = mongoose.model("user", UserSchema);

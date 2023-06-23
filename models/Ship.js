@@ -8,7 +8,7 @@ const ShipSchema = mongoose.Schema(
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
-      required:true
+      required: true,
     },
     email: {
       type: String,
@@ -16,9 +16,11 @@ const ShipSchema = mongoose.Schema(
     contact: {
       type: Number,
     },
-    address: {
-      type: String,
-    },
+    address: [
+      {
+        type: String,
+      },
+    ],
   },
   { timestamps: true }
 );
