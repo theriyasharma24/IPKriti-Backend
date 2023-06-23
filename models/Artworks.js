@@ -17,10 +17,12 @@ const ArtworkSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    reviews_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "reviews",
-    },
+    reviews_id: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "reviews",
+      },
+    ],
     wishlist: [
       {
         type: mongoose.Schema.Types.ObjectId,

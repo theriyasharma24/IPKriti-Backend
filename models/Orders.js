@@ -3,12 +3,12 @@ const OrderSchema = mongoose.Schema(
   {
     ship_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "ship",
+      ref: "ships",
       required: true,
     },
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "users",
       required: true,
     },
     artworks: [

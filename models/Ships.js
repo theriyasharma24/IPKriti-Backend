@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ShipSchema = mongoose.Schema(
+const ShipsSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -7,7 +7,7 @@ const ShipSchema = mongoose.Schema(
     },
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "users",
       required: true,
     },
     email: {
@@ -24,4 +24,4 @@ const ShipSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("ship", ShipSchema);
+module.exports = mongoose.model("ships", ShipsSchema);
