@@ -14,6 +14,22 @@ const ArtistSchema = mongoose.Schema(
     address: {
       type: String,
     },
+    upi_id: {
+      type: String,
+    },
+    facebook: {
+      type: String,
+    },
+    instagram: {
+      type: String,
+    },
+    twitter: {
+      type: String,
+    },
+    others: {
+      type: String,
+    },
+    
   },
   { timestamps: true }
 );

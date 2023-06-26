@@ -13,6 +13,14 @@ const ReviewsSchema = mongoose.Schema(
       ref: "users",
       required: true,
     },
+    artworkid: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "artworks"
+    },
+    artistid: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "artists"
+    },
   },
   { timestamps: true }
 );
