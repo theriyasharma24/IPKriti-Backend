@@ -4,6 +4,8 @@ const path = require("path");
 const app = express();
 var cors = require("cors");
 const connectDB = require("./config/db");
+const fs = require("fs");
+const qr = require("qr-image");
 connectDB();
 const Artwork = require("./models/Artworks.js");
 app.use(express.json({ extended: false }));
@@ -14,7 +16,15 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
-
+app.post("/qr-code", async (req, res) => {
+  try {
+    const { url } = req.body;
+    var qr_svg = qr.image(url);
+    qr_svg.pipe(fs.createWriteStream("qr.png"));
+  } catch (err) {
+    console.log(err);
+  }
+});
 //performing route operations
 const routeOperation = async (req, res, next) => {
   let route = req.url.split("/")[2];
