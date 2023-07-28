@@ -47,6 +47,7 @@
     "lines-and-columns": "^1.2.4",
     "loose-envify": "^1.4.0",
     "lru-cache": "^5.1.1",
+    "mongodb": "^5.7.0",
     "mongoose": "^7.0.1",
     "ms": "^2.1.2",
     "multer": "^1.4.5-lts.1",
