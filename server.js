@@ -13,7 +13,10 @@ app.use(express.json({ extended: false }));
 
 app.use(
   cors({
-    origin: "https://ipkriti.netlify.app",
+    origin: [
+      "https://ipkriti.netlify.app",
+      "http://localhost:3000",
+      ],
   })
 );
 app.post("/qr-code", async (req, res) => {
