@@ -80,7 +80,7 @@
     "yaml": "^1.10.2"
   },
   "scripts": {
-    "start": "node --max_old_space_size=4096 server.js",
+    "start": "nodemon server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
