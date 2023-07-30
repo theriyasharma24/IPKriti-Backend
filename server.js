@@ -14,7 +14,7 @@ app.use(express.json({ extended: false }));
 app.use(
   cors({
     // origin:"http://localhost:3000",
-    origin:"https://ipkriti.netlify.app",
+    origin: "https://ipkriti.netlify.app",
   })
 );
 app.post("/qr-code", async (req, res) => {
@@ -26,12 +26,11 @@ app.post("/qr-code", async (req, res) => {
     console.log(err);
   }
 });
-app.use('/api/cart', require('./routes/cart'));
+app.use("/api/cart", require("./routes/cart"));
 //performing route operations
 const routeOperation = async (req, res, next) => {
   let route = req.url.split("/")[2];
-  let routename =
-    route.charAt(0).toUpperCase() + route.substring(1).toLowerCase();
+  let routename = route[0].toUpperCase() + route.substring(1).toLowerCase();
 
   try {
     if (req.method == "DELETE") {
