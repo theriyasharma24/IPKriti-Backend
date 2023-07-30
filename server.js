@@ -7,13 +7,12 @@ const connectDB = require("./config/db");
 const fs = require("fs");
 const qr = require("qr-image");
 connectDB();
-const Artwork = require("./models/Artworks.js");
 app.use(express.json({ extended: false }));
 // app.use(cors());
-
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    // origin:"http://localhost:3000",
+    origin: "https://ipkriti.netlify.app",
   })
 );
 app.post("/qr-code", async (req, res) => {
@@ -25,41 +24,47 @@ app.post("/qr-code", async (req, res) => {
     console.log(err);
   }
 });
-app.use('/api/cart', require('./routes/cart'));
-//performing route operations
-const routeOperation = async (req, res, next) => {
-  let route = req.url.split("/")[2];
-  let routename =
-    route.charAt(0).toUpperCase() + route.substring(1).toLowerCase();
+app.use("/api/cart", require("./routes/cart"));
+app.use("/api/artists", require("./routes/artists"));
+app.use("/api/artworks", require("./routes/artworks"));
+app.use("/api/orders", require("./routes/orders"));
+app.use("/api/reviews", require("./routes/reviews"));
+app.use("/api/ships", require("./routes/ships"));
 
-  try {
-    if (req.method == "DELETE") {
-      let data = await require(`./models/${routename}.js`).deleteOne(
-        req.params
-      );
-      res.send(data);
-    } else if (req.method == "GET") {
-      let data = await require(`./models/${routename}.js`).find(req.params);
-      res.send(data);
-    } else if (req.method == "POST") {
-      const New = require(`./models/${routename}.js`);
-      const newdata = new New(req.body);
-      const data = await newdata.save();
-      res.send(data);
-    } else if (req.method == "PUT") {
-      let data = await require(`./models/${routename}.js`).updateOne(
-        req.params,
-        { $set: req.body }
-      );
-      res.send(data);
-    }
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-};
+// //performing route operations
+// const routeOperation = async (req, res, next) => {
+//   let route = req.url.split("/")[2];
+//   let routename =
+//     route.charAt(0).toUpperCase() + route.substring(1).toLowerCase();
 
-app.use(routeOperation);
+//   try {
+//     if (req.method == "DELETE") {
+//       let data = await require(`./models/${routename}.js`).deleteOne(
+//         req.params
+//       );
+//       res.send(data);
+//     } else if (req.method == "GET") {
+//       let data = await require(`./models/${routename}.js`).find(req.params);
+//       res.send(data);
+//     } else if (req.method == "POST") {
+//       const New = require(`./models/${routename}.js`);
+//       const newdata = new New(req.body);
+//       const data = await newdata.save();
+//       res.send(data);
+//     } else if (req.method == "PUT") {
+//       let data = await require(`./models/${routename}.js`).updateOne(
+//         req.params,
+//         { $set: req.body }
+//       );
+//       res.send(data);
+//     }
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send("Server Error");
+//   }
+// };
+
+// app.use(routeOperation);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
@@ -71,6 +76,6 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
