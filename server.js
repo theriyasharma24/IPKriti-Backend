@@ -14,7 +14,7 @@ app.use(express.json({ extended: false }));
 app.use(
   cors({
     // origin:"http://localhost:3000",
-    origin:"https://ipkriti.netlify.app",
+    origin: "https://ipkriti.netlify.app",
   })
 );
 app.post("/qr-code", async (req, res) => {
@@ -26,7 +26,7 @@ app.post("/qr-code", async (req, res) => {
     console.log(err);
   }
 });
-app.use('/api/cart', require('./routes/cart'));
+app.use("/api/cart", require("./routes/cart"));
 //performing route operations
 const routeOperation = async (req, res, next) => {
   let route = req.url.split("/")[2];
@@ -72,6 +72,6 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
