@@ -30,8 +30,7 @@ app.use("/api/cart", require("./routes/cart"));
 //performing route operations
 const routeOperation = async (req, res, next) => {
   let route = req.url.split("/")[2];
-  let routename =
-    route.charAt(0).toUpperCase() + route.substring(1).toLowerCase();
+  let routename = route[0].toUpperCase() + route.substring(1).toLowerCase();
 
   try {
     if (req.method == "DELETE") {
