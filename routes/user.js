@@ -36,7 +36,6 @@ router.post("/", async (req, res) => {
 
   const { name } = req.body;
 
-  console.log("inside routes:", req.body);
   try {
     const newuser = new User({
       name,
@@ -64,7 +63,6 @@ router.post("/qr-code", async (req, res) => {
     // .then((answers) => {
     //   // Use user feedback for... whatever!!
     //   console.log(answers);
-    console.log("body",req.body);
     const { url } = req.body;
     // const url = answers.URL;
     var qr_svg = qr.image(url);
